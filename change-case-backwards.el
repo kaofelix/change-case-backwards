@@ -13,10 +13,12 @@
 
 ;;; Code:
 
-(defun upcase-word-backwards ()
+(defun upcase-word-backward ()
   "Make words before point upcase."
   (interactive)
-  (upcase-word -1))
+  (save-excursion
+    (skip-chars-backward "[:upper:] ")
+    (upcase-word -1)))
 
 (provide 'change-case-backwards)
 ;;; change-case-backwards.el ends here
