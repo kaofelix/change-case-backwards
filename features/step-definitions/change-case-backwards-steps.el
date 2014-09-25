@@ -9,3 +9,14 @@
 (When "^I go to the beginning of the buffer$"
   (lambda ()
     (call-interactively 'beginning-of-buffer)))
+
+(Given "^I have a buffer \"\\([^\"]+\\)\" with text:$"
+  (lambda (buffer text)
+    (Given "I switch to buffer \"%s\"" buffer)
+    (Given "I clear the buffer")
+    (Given "I insert:" text)))
+
+(And "^I press \"\\([^\"]+\\)\" \\([0-9]+\\) times$"
+  (lambda (key-combo times)
+    (dotimes (_ (string-to-number times))
+      (And "I press \"%s\"" key-combo))))
